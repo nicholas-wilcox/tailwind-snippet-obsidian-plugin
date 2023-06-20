@@ -17,6 +17,10 @@ export default class UnofficialTailwindPlugin extends Plugin {
 	settings: UnofficialTailwindPluginSettings;
 	preflightPlugin: NonNullable<TailwindConfig['plugins']>[number];
 
+	get tailwindPlugins() {
+		return this.settings.enablePreflight ? [this.preflightPlugin] : [];
+	}
+
 	get tailwindConfig(): TailwindConfig {
 		const adapter = this.app.vault.adapter as FileSystemAdapter;
 		return {
@@ -24,7 +28,7 @@ export default class UnofficialTailwindPlugin extends Plugin {
 			theme: {
 				extend: {},
 			},
-			plugins: this.settings.enablePreflight ? [this.preflightPlugin] : [],
+			plugins: this.tailwindPlugins,
 			corePlugins: {
 				preflight: false,
 			}
