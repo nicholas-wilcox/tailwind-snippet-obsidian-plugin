@@ -6,5 +6,5 @@
 	"description": "Use TailwindCSS utility classes in your markup.",
 	"author": "Nicholas Wilcox",
 	"authorUrl": "https://github.com/nicholas-wilcox",
-	"isDesktopOnly": false
+	"isDesktopOnly": true
 }
