@@ -1,4 +1,4 @@
-import { App, FileSystemAdapter, Plugin, PluginSettingTab, Setting } from 'obsidian';
+import { App, FileSystemAdapter, Plugin, PluginSettingTab, Setting, normalizePath } from 'obsidian';
 import postcss from 'postcss';
 import autoprefixer from 'autoprefixer';
 import tailwindcss, { Config as TailwindConfig } from 'tailwindcss';
@@ -17,14 +17,21 @@ export default class UnofficialTailwindPlugin extends Plugin {
 	settings: UnofficialTailwindPluginSettings;
 	preflightPlugin: NonNullable<TailwindConfig['plugins']>[number];
 
+	get vault() {
+		return this.app.vault;
+	}
+
+	get adapter(): FileSystemAdapter {
+		return this.app.vault.adapter as FileSystemAdapter;
+	}
+
 	get tailwindPlugins() {
 		return this.settings.enablePreflight ? [this.preflightPlugin] : [];
 	}
 
 	get tailwindConfig(): TailwindConfig {
-		const adapter = this.app.vault.adapter as FileSystemAdapter;
 		return {
-			content: this.app.vault.getMarkdownFiles().map(f => adapter.getFullPath(f.path)),
+			content: this.vault.getMarkdownFiles().map(f => this.adapter.getFullPath(f.path)),
 			theme: {
 				extend: {},
 			},
@@ -39,7 +46,7 @@ export default class UnofficialTailwindPlugin extends Plugin {
 		await this.loadSettings();
 		await this.initPreflightPlugin();
 		await this.doTailwind();
-		this.registerEvent(this.app.vault.on('modify', () => this.doTailwind()));
+		this.registerEvent(this.vault.on('modify', () => this.doTailwind()));
 		this.addSettingTab(new SampleSettingTab(this.app, this));
 	}
 
@@ -55,9 +62,8 @@ export default class UnofficialTailwindPlugin extends Plugin {
 	}
 
 	async initPreflightPlugin() {
-		const preflight = this.app.vault.configDir.concat('/plugins/unofficial-obsidian-tailwindcss-plugin/preflight.css');
-		const preflightCss = await this.app.vault.adapter.read(preflight);
-		const preflightStyles = postcss.parse(preflightCss);
+		const preflight = normalizePath(this.vault.configDir + '/plugins/unofficial-obsidian-tailwindcss-plugin/preflight.css');
+		const preflightStyles = postcss.parse(await this.adapter.read(preflight));
 
 		// This is an altered version of the original preflight plugin.
 		this.preflightPlugin = plugin(({ addBase }) => {
@@ -74,16 +80,14 @@ export default class UnofficialTailwindPlugin extends Plugin {
 	}
 
 	async doTailwind() {
-		const vault = this.app.vault;
-		const adapter = vault.adapter as FileSystemAdapter;
-		const cssIn = vault.configDir.concat('/plugins/unofficial-obsidian-tailwindcss-plugin/tailwind.css');
-		const cssOut = vault.configDir.concat('/snippets/tailwind.css');
+		const cssIn = normalizePath(this.vault.configDir + '/plugins/unofficial-obsidian-tailwindcss-plugin/tailwind.css');
+		const cssOut = normalizePath(this.vault.configDir + '/snippets/tailwind.css');
 
 		const result = await postcss([
 			tailwindcss(this.tailwindConfig),
 			autoprefixer
-		]).process(await adapter.read(cssIn), { from: cssIn, to: cssOut });
-		await adapter.write(cssOut, result.css);
+		]).process(await this.adapter.read(cssIn), { from: cssIn, to: cssOut });
+		await this.adapter.write(cssOut, result.css);
 	}
 }
 
