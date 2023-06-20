@@ -38,6 +38,7 @@ export default class UnofficialTailwindPlugin extends Plugin {
 	async onload() {
 		await this.loadSettings();
 		await this.initPreflightPlugin();
+		await this.doTailwind();
 		this.registerEvent(this.app.vault.on('modify', () => this.doTailwind()));
 		this.addSettingTab(new SampleSettingTab(this.app, this));
 	}
