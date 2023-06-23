@@ -47,7 +47,7 @@ export default class UnofficialTailwindPlugin extends Plugin {
 		await this.initPreflightPlugin();
 		await this.doTailwind();
 		this.registerEvent(this.vault.on('modify', () => this.doTailwind()));
-		this.addSettingTab(new SampleSettingTab(this.app, this));
+		this.addSettingTab(new SettingsTab(this.app, this));
 	}
 
 	onunload() { }
@@ -91,7 +91,7 @@ export default class UnofficialTailwindPlugin extends Plugin {
 	}
 }
 
-class SampleSettingTab extends PluginSettingTab {
+class SettingsTab extends PluginSettingTab {
 	plugin: UnofficialTailwindPlugin;
 
 	constructor(app: App, plugin: UnofficialTailwindPlugin) {
