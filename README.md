@@ -1,4 +1,4 @@
-# Unofficial Obsidian TailwindCSS Plugin
+# Unofficial TailwindCSS Obsidian Plugin
 
 This plugin uses [TailwindCSS](https://tailwindcss.com/) (via [PostCSS](https://postcss.org/)) to produce a CSS snippet in your Obsidian vault.
 
@@ -26,5 +26,5 @@ Additionally, Preflight styles conflict with Obsidian's base styles such that:
 1. the Obsidian UI is affected by Preflight styles, and
 2. some Preflight styles are overriden by Obsidian styles.
 
-Therefore, this plugin (the Unofficial Obsidian TailwindCSS Plugin) does not apply Preflight styles by default.
+Therefore, this plugin (the Unofficial TailwindCSS Obsidian Plugin) does not apply Preflight styles by default.
 You can enable a setting to replicate the functionality of Preflight in a custom Tailwind plugin that instead sources a copy of `preflight.css` using the Obsidian API.
