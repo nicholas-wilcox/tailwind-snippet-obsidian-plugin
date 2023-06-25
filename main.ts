@@ -1,5 +1,6 @@
 import { App, FileSystemAdapter, Plugin, PluginSettingTab, Setting, normalizePath } from 'obsidian';
-import postcss from 'postcss';
+import postcss, { AcceptedPlugin } from 'postcss';
+import prefixer from 'postcss-prefix-selector';
 import autoprefixer from 'autoprefixer';
 import tailwindcss, { Config as TailwindConfig } from 'tailwindcss';
 import { version as tailwindVersion } from 'tailwindcss/package.json';
@@ -7,10 +8,12 @@ import plugin from 'tailwindcss/plugin'
 
 interface UnofficialTailwindPluginSettings {
 	enablePreflight: boolean;
+	enablePrefixer: boolean;
 }
 
 const DEFAULT_SETTINGS: UnofficialTailwindPluginSettings = {
 	enablePreflight: false,
+	enablePrefixer: false,
 }
 
 export default class UnofficialTailwindPlugin extends Plugin {
@@ -83,10 +86,21 @@ export default class UnofficialTailwindPlugin extends Plugin {
 		const cssIn = normalizePath(this.vault.configDir + '/plugins/unofficial-obsidian-tailwindcss-plugin/tailwind.css');
 		const cssOut = normalizePath(this.vault.configDir + '/snippets/tailwind.css');
 
-		const result = await postcss([
+		const postcssPlugins: AcceptedPlugin[] = [
 			tailwindcss(this.tailwindConfig),
-			autoprefixer
-		]).process(await this.adapter.read(cssIn), { from: cssIn, to: cssOut });
+			autoprefixer,
+		];
+
+		if (this.settings.enablePrefixer) {
+			// @ts-ignore
+			// The postcss-prefix-selector export's return value is declared as
+			// `(root: any) => string | undefined`, so it's basically like a TransformCallback.
+			postcssPlugins.push(prefixer({
+				prefix: '.tailwind',
+			}));
+		}
+
+		const result = await postcss(postcssPlugins).process(await this.adapter.read(cssIn), { from: cssIn, to: cssOut });
 		await this.adapter.write(cssOut, result.css);
 	}
 }
@@ -112,6 +126,17 @@ class SettingsTab extends PluginSettingTab {
 				.setValue(this.plugin.settings.enablePreflight)
 				.onChange(async (value: boolean) => {
 					this.plugin.settings.enablePreflight = value;
+					await this.plugin.saveSettings();
+				}));
+
+		new Setting(containerEl)
+			.setName('Add prefix to Tailwind selectors')
+			.setDesc(`Prefixes all selectors in Tailwind's style rules with another selector.
+					  This can be used to prevent Preflight styles from affecting Obsidian's UI.`)
+			.addToggle(toggle => toggle
+				.setValue(this.plugin.settings.enablePrefixer)
+				.onChange(async (value: boolean) => {
+					this.plugin.settings.enablePrefixer = value;
 					await this.plugin.saveSettings();
 				}));
 	}
