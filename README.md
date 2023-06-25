@@ -28,3 +28,11 @@ Additionally, Preflight styles conflict with Obsidian's base styles such that:
 
 Therefore, this plugin (the Unofficial TailwindCSS Obsidian Plugin) does not apply Preflight styles by default.
 You can enable a setting to replicate the functionality of Preflight in a custom Tailwind plugin that instead sources a copy of `preflight.css` using the Obsidian API.
+
+## Prefix selector options
+
+You may also control what is affected by Tailwind's CSS rules by enabling this plugin's prefix selector option.
+This will add a prefix (default `.tailwind`) to all CSS selectors using a [descendant combinator](https://developer.mozilla.org/en-US/docs/Web/CSS/Descendant_combinator).
+so that `.a, #foo.bar` becomes `.tailwind .a, .tailwind #foo.bar`.
+
+You can configure this so that only certain notes (or even certain sections of notes) are affected by Tailwind.
