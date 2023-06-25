@@ -11,8 +11,8 @@
 	"keywords": [ "Obsidian", "TailwindCSS", "PostCSS" ],
 	"author": "Nicholas Wilcox <nwilcox@linicks.dev>",
 	"repository": {
-		type: "git",
-		url: "https://github.com/nicholas-wilcox/unofficial-tailwindcss-obsidian-plugin.git"
+		"type": "git",
+		"url": "https://github.com/nicholas-wilcox/unofficial-tailwindcss-obsidian-plugin.git"
 	},
 	"license": "MIT",
 	"devDependencies": {
