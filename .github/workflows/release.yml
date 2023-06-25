@@ -17,10 +17,15 @@ jobs:
         with:
           node-version: "18.x"
 
+      - name: Bake license information
+        run: |
+          cp main.ts main_license_baked.ts
+          cat dependency_licenses.txt >> main_license_baked.ts
+
       - name: Build plugin
         run: |
           npm install
-          npm run build
+          npm run build -- main_license_baked.ts
 
       - name: Create release
         env:
