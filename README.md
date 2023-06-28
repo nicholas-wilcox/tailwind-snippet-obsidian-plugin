@@ -12,6 +12,17 @@ This snippet will update based on changes to your files and settings.
 This plugin makes use of the [FileSystemAdapter](https://docs.obsidian.md/Reference/TypeScript+API/FileSystemAdapter/FileSystemAdapter) API
 to read and write files in your vault's configuration directory.
 
+## Installation
+
+At the time of writing, this plugin has not yet been submitted as a community plugin.
+Therefore, you must manually install this plugin, as you might do so for the [`hot-reload` plugin](https://github.com/pjeby/hot-reload).
+
+In the Releases section for this repository, you can find the zip archive that contains all of the individual files.
+Unzip that archive so that its contents are in a new directory called `unofficial-tailwindcss-obsidian-plugin/`.
+Then you should be good to go after restarting Obsidian and enabling the plugin.
+
+Don't forget to enable the generated CSS snippet after it appears.
+
 ## Note on Preflight
 
 [Preflight](https://tailwindcss.com/docs/preflight) is a set of base styles that Tailwind injects into its `@tailwind base` directive.
