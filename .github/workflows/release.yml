@@ -34,6 +34,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          cp ./node_modules/tailwindcss/lib/css/preflight.css .
           # Adapted from https://github.com/pjeby/hot-reload/blob/master/.github/workflows/publish.yml
           mkdir "${PLUGIN_NAME}"
           cp main.js manifest.json tailwind.css preflight.css "${PLUGIN_NAME}/"
