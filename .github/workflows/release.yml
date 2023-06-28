@@ -5,6 +5,9 @@ on:
     tags:
       - "*"
 
+env:
+  PLUGIN_NAME: ${{ github.event.repository.name }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -31,9 +34,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          # Adapted from https://github.com/pjeby/hot-reload/blob/master/.github/workflows/publish.yml
+          mkdir "${PLUGIN_NAME}"
+          cp main.js manifest.json tailwind.css preflight.css "${PLUGIN_NAME}/"
+          zip -r "$PLUGIN_NAME".zip "$PLUGIN_NAME"
+
           tag="${GITHUB_REF#refs/tags/}"
 
           gh release create "$tag" \
             --title="$tag" \
             --draft \
-            main.js manifest.json
+            "${PLUGIN_NAME}".zip main.js manifect.json tailwind.css preflight.css
