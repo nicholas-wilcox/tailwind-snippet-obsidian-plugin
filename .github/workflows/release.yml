@@ -45,4 +45,4 @@ jobs:
           gh release create "$tag" \
             --title="$tag" \
             --draft \
-            "${PLUGIN_NAME}".zip main.js manifect.json tailwind.css preflight.css
+            "${PLUGIN_NAME}".zip main.js manifest.json tailwind.css preflight.css
