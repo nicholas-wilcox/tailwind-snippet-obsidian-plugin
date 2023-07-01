@@ -47,3 +47,8 @@ This will add a prefix (default `.tailwind`) to all CSS selectors using a [desce
 so that `.a, #foo.bar` becomes `.tailwind .a, .tailwind #foo.bar`.
 
 You can configure this so that only certain notes (or even certain sections of notes) are affected by Tailwind.
+
+## Developer Notes
+
+After installing dependencies (using `npm` for this project), you should copy the Preflight styles into the root of the project.
+```cp node_modules/tailwindcss/lib/css/preflight.css .```
