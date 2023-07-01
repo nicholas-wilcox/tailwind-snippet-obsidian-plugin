@@ -6,6 +6,7 @@ import tailwindcss, { Config as TailwindConfig } from 'tailwindcss';
 import { version as tailwindVersion } from 'tailwindcss/package.json';
 import plugin from 'tailwindcss/plugin'
 import { UnofficialTailwindPluginSettings, DEFAULT_SETTINGS, SettingsTab } from './settings';
+import { id as pluginId } from './manifest.json';
 
 export default class UnofficialTailwindPlugin extends Plugin {
 	settings: UnofficialTailwindPluginSettings;
@@ -56,7 +57,7 @@ export default class UnofficialTailwindPlugin extends Plugin {
 	}
 
 	async initPreflightPlugin() {
-		const preflight = normalizePath(this.vault.configDir + '/plugins/unofficial-obsidian-tailwindcss-plugin/preflight.css');
+		const preflight = normalizePath(this.vault.configDir + `/plugins/${pluginId}/preflight.css`);
 		const preflightStyles = postcss.parse(await this.adapter.read(preflight));
 
 		// This is an altered version of the original preflight plugin.
@@ -74,7 +75,7 @@ export default class UnofficialTailwindPlugin extends Plugin {
 	}
 
 	async doTailwind() {
-		const cssIn = normalizePath(this.vault.configDir + '/plugins/unofficial-obsidian-tailwindcss-plugin/tailwind.css');
+		const cssIn = normalizePath(this.vault.configDir + `/plugins/${pluginId}/tailwind.css`);
 		const cssOut = normalizePath(this.vault.configDir + '/snippets/tailwind.css');
 
 		const postcssPlugins: AcceptedPlugin[] = [
