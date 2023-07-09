@@ -25,7 +25,7 @@ export class SettingsTab extends PluginSettingTab {
 		const { containerEl } = this;
 		containerEl.empty();
 
-		new Setting(containerEl)
+		const enablePreflightSetting = new Setting(containerEl)
 			.setName('Enable Preflight')
 			.setDesc(`Adds TailwindCSS's Preflight to the generated stylesheet.
 					 (NOTE: Not all styles from Preflight will be applied.
@@ -37,7 +37,7 @@ export class SettingsTab extends PluginSettingTab {
 					await this.plugin.saveSettings();
 				}));
 
-		new Setting(containerEl)
+		const addPrefixSelectorSetting = new Setting(containerEl)
 			.setName('Add prefix to Tailwind selectors')
 			.setDesc(`Prefixes all selectors in Tailwind's style rules with another selector.
 					  This can be used to prevent Preflight styles from affecting Obsidian's UI.`)
@@ -45,10 +45,11 @@ export class SettingsTab extends PluginSettingTab {
 				.setValue(this.plugin.settings.addPrefixSelector)
 				.onChange(async (value: boolean) => {
 					this.plugin.settings.addPrefixSelector = value;
+					prefixSelectorSetting.setDisabled(!value);
 					await this.plugin.saveSettings();
 				}));
 
-		new Setting(containerEl)
+		const prefixSelectorSetting = new Setting(containerEl)
 			.setName('Prefix selector')
 			.setDesc(`Will be combined with all Tailwind selectors using a descendant combinator.
 					 (e.g. ".a, #foo.bar" => ".tailwind .a, .tailwind #foo.bar")`)
