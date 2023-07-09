@@ -3,13 +3,13 @@ import UnofficialTailwindPlugin from './main';
 
 export interface UnofficialTailwindPluginSettings {
 	enablePreflight: boolean;
-	enablePrefixer: boolean;
+	addPrefixSelector: boolean;
 	prefixSelector: string;
 }
 
 export const DEFAULT_SETTINGS: UnofficialTailwindPluginSettings = {
 	enablePreflight: false,
-	enablePrefixer: false,
+	addPrefixSelector: false,
 	prefixSelector: '.tailwind',
 }
 
@@ -42,9 +42,9 @@ export class SettingsTab extends PluginSettingTab {
 			.setDesc(`Prefixes all selectors in Tailwind's style rules with another selector.
 					  This can be used to prevent Preflight styles from affecting Obsidian's UI.`)
 			.addToggle(toggle => toggle
-				.setValue(this.plugin.settings.enablePrefixer)
+				.setValue(this.plugin.settings.addPrefixSelector)
 				.onChange(async (value: boolean) => {
-					this.plugin.settings.enablePrefixer = value;
+					this.plugin.settings.addPrefixSelector = value;
 					await this.plugin.saveSettings();
 				}));
 
@@ -52,9 +52,10 @@ export class SettingsTab extends PluginSettingTab {
 			.setName('Prefix selector')
 			.setDesc(`Will be combined with all Tailwind selectors using a descendant combinator.
 					 (e.g. ".a, #foo.bar" => ".tailwind .a, .tailwind #foo.bar")`)
+			.setClass('prefix-selector')
 			.addText(text => text
 				.setValue(this.plugin.settings.prefixSelector)
-				.setDisabled(!this.plugin.settings.enablePrefixer)
+				.setDisabled(!this.plugin.settings.addPrefixSelector)
 				.onChange(async (value: string) => {
 					this.plugin.settings.prefixSelector = value;
 					await this.plugin.saveSettings();

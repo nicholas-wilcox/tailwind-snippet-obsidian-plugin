@@ -83,7 +83,7 @@ export default class UnofficialTailwindPlugin extends Plugin {
 			autoprefixer,
 		];
 
-		if (this.settings.enablePrefixer) {
+		if (this.settings.addPrefixSelector) {
 			// @ts-ignore
 			// The postcss-prefix-selector export's return value is declared as
 			// `(root: any) => string | undefined`, so it's basically like a TransformCallback.
