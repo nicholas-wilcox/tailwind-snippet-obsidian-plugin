@@ -16,6 +16,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added `margin-left` to prefix selector setting to denote its dependency on the prefix selector toggle.
+
 ### Changed
 
 - Refactor `enablePrefixer` to `addPrefixSelector`.
