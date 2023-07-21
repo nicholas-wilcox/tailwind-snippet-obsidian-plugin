@@ -16,6 +16,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Removed 'obsidian' from plugin ID in `manifest.json`.
+
 ### Added
 
 - Added `margin-left` to prefix selector setting to denote its dependency on the prefix selector toggle.

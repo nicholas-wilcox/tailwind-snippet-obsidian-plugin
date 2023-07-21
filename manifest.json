@@ -1,5 +1,5 @@
 {
-	"id": "unofficial-tailwindcss-obsidian-plugin",
+	"id": "unofficial-tailwindcss-plugin",
 	"name": "Unofficial TailwindCSS Plugin",
 	"version": "0.2.2",
 	"minAppVersion": "0.15.0",
