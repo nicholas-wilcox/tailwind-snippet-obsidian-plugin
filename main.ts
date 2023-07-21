@@ -75,7 +75,8 @@ export default class UnofficialTailwindPlugin extends Plugin {
 	}
 
 	async doTailwind() {
-		const cssIn = normalizePath(this.vault.configDir + `/plugins/${pluginId}/tailwind.css`);
+		const entryPoint = Boolean(this.settings.entryPoint) ? `/snippets/${this.settings.entryPoint}` : `/plugins/${pluginId}/tailwind.css`;
+		const cssIn = normalizePath(this.vault.configDir + entryPoint);
 		const cssOut = normalizePath(this.vault.configDir + '/snippets/tailwind.css');
 
 		const postcssPlugins: AcceptedPlugin[] = [

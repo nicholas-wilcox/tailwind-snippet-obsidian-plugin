@@ -5,12 +5,14 @@ export interface UnofficialTailwindPluginSettings {
 	enablePreflight: boolean;
 	addPrefixSelector: boolean;
 	prefixSelector: string;
+	entryPoint: string;
 }
 
 export const DEFAULT_SETTINGS: UnofficialTailwindPluginSettings = {
 	enablePreflight: false,
 	addPrefixSelector: false,
 	prefixSelector: '.tailwind',
+	entryPoint: '',
 }
 
 export class SettingsTab extends PluginSettingTab {
@@ -59,6 +61,17 @@ export class SettingsTab extends PluginSettingTab {
 				.setDisabled(!this.plugin.settings.addPrefixSelector)
 				.onChange(async (value: string) => {
 					this.plugin.settings.prefixSelector = value;
+					await this.plugin.saveSettings();
+				}));
+
+		const entryPoint = new Setting(containerEl)
+			.setName('PostCSS entrypoint')
+			.setDesc(`A custom CSS snippet that will be processed by PostCSS and Tailwind instead of the prepackaged input file.
+					  See the TailwindCSS documentation for more details.`)
+			.addText(text => text
+				.setValue(this.plugin.settings.entryPoint)
+				.onChange(async (value: string) => {
+					this.plugin.settings.entryPoint = value;
 					await this.plugin.saveSettings();
 				}));
 	}
