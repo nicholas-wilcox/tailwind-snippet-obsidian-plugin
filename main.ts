@@ -24,19 +24,6 @@ export default class UnofficialTailwindPlugin extends Plugin {
 		return this.settings.enablePreflight ? [this.preflightPlugin] : [];
 	}
 
-	get tailwindConfig(): TailwindConfig {
-		return {
-			content: this.vault.getMarkdownFiles().map(f => this.adapter.getFullPath(f.path)),
-			theme: {
-				extend: {},
-			},
-			plugins: this.tailwindPlugins,
-			corePlugins: {
-				preflight: false,
-			}
-		}
-	}
-
 	async onload() {
 		await this.loadSettings();
 		await this.initPreflightPlugin();
@@ -74,13 +61,35 @@ export default class UnofficialTailwindPlugin extends Plugin {
 		});
 	}
 
+	async getTailwindConfig(): Promise<TailwindConfig> {
+		let theme: TailwindConfig['theme'];
+
+		if (Boolean(this.settings.themeConfig)) {
+			const themeConfigPath = normalizePath(this.vault.configDir + '/' + this.settings.themeConfig);
+			if (await this.adapter.exists(themeConfigPath)) {
+				theme = JSON.parse(await this.adapter.read(themeConfigPath));
+			} else {
+				console.error(`Could not find theme configuration file at '${themeConfigPath}'.`);
+			}
+		}
+
+		return {
+			content: this.vault.getMarkdownFiles().map(f => this.adapter.getFullPath(f.path)),
+			theme,
+			plugins: this.tailwindPlugins,
+			corePlugins: {
+				preflight: false,
+			}
+		}
+	}
+
 	async doTailwind() {
-		const entryPoint = Boolean(this.settings.entryPoint) ? `/snippets/${this.settings.entryPoint}` : `/plugins/${pluginId}/tailwind.css`;
+		const entryPoint = Boolean(this.settings.entryPoint) ? ('/' + this.settings.entryPoint) : `/plugins/${pluginId}/tailwind.css`;
 		const cssIn = normalizePath(this.vault.configDir + entryPoint);
 		const cssOut = normalizePath(this.vault.configDir + '/snippets/tailwind.css');
 
 		const postcssPlugins: AcceptedPlugin[] = [
-			tailwindcss(this.tailwindConfig),
+			tailwindcss(await this.getTailwindConfig()),
 			autoprefixer,
 		];
 

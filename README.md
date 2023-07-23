@@ -23,7 +23,9 @@ Then you should be good to go after restarting Obsidian and enabling the plugin.
 
 Don't forget to enable the generated CSS snippet after it appears.
 
-## Note on Preflight
+## Settings
+
+### Preflight
 
 [Preflight](https://tailwindcss.com/docs/preflight) is a set of base styles that Tailwind injects into its `@tailwind base` directive.
 In a more literal sense, [`preflight`](https://github.com/tailwindlabs/tailwindcss/blob/master/src/corePlugins.js#L494)
@@ -38,15 +40,34 @@ Additionally, Preflight styles conflict with Obsidian's base styles such that:
 2. some Preflight styles are overriden by Obsidian styles.
 
 Therefore, this plugin (the Unofficial TailwindCSS Obsidian Plugin) does not apply Preflight styles by default.
-You can enable a setting to replicate the functionality of Preflight in a custom Tailwind plugin that instead sources a copy of `preflight.css` using the Obsidian API.
+You can enable Preflight in the plugin settings, which will direct the plugin to source a packaged copy of `preflight.css` using the Obsidian API.
 
-## Prefix selector options
+### Prefix selector
 
 You may also control what is affected by Tailwind's CSS rules by enabling this plugin's prefix selector option.
 This will add a prefix (default `.tailwind`) to all CSS selectors using a [descendant combinator](https://developer.mozilla.org/en-US/docs/Web/CSS/Descendant_combinator).
 so that `.a, #foo.bar` becomes `.tailwind .a, .tailwind #foo.bar`.
 
 You can configure this so that only certain notes (or even certain sections of notes) are affected by Tailwind.
+
+### PostCSS entrypoint
+
+By default, this plugin will use Tailwind's default input template, which combines three of its directives:
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+You can specify a custom entrypoint using a file path that is relative to your vault's configuration directory.
+This is useful if you want to use Tailwind's `@layer` directive for your own purposes.
+
+### Tailwind theme
+
+You can specify a custom Tailwind theme using a file path that is relative to your vault's configuration directory.
+The file contents should be a JSON object.
+This is useful if you want to replace or extend Tailwind's default theme.
 
 ## Developer Notes
 

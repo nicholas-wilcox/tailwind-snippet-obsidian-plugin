@@ -1,4 +1,5 @@
 import { App, PluginSettingTab, Setting } from 'obsidian';
+import { Config as TailwindConfig } from 'tailwindcss';
 import UnofficialTailwindPlugin from './main';
 
 export interface UnofficialTailwindPluginSettings {
@@ -6,6 +7,7 @@ export interface UnofficialTailwindPluginSettings {
 	addPrefixSelector: boolean;
 	prefixSelector: string;
 	entryPoint: string;
+	themeConfig: string;
 }
 
 export const DEFAULT_SETTINGS: UnofficialTailwindPluginSettings = {
@@ -13,6 +15,7 @@ export const DEFAULT_SETTINGS: UnofficialTailwindPluginSettings = {
 	addPrefixSelector: false,
 	prefixSelector: '.tailwind',
 	entryPoint: '',
+	themeConfig: '',
 }
 
 export class SettingsTab extends PluginSettingTab {
@@ -72,6 +75,18 @@ export class SettingsTab extends PluginSettingTab {
 				.setValue(this.plugin.settings.entryPoint)
 				.onChange(async (value: string) => {
 					this.plugin.settings.entryPoint = value;
+					await this.plugin.saveSettings();
+				}));
+
+		const themeConfig = new Setting(containerEl)
+			.setName('Tailwind theme')
+			.setDesc(`The theme of the Tailwind configuration object.
+					 This can be used to extend or replace the default theme.
+					 See the TailwindCSS documentation for more details.`)
+			.addText(text => text
+				.setValue(this.plugin.settings.themeConfig)
+				.onChange(async (value: string) => {
+					this.plugin.settings.themeConfig = value;
 					await this.plugin.saveSettings();
 				}));
 	}
