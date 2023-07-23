@@ -50,5 +50,8 @@ You can configure this so that only certain notes (or even certain sections of n
 
 ## Developer Notes
 
+Take note of the distinction between the name of the repository and the ID of the plugin.
+Make sure that you clone this repository into a directory named `unofficial-tailwindcss-plugin`.
+
 After installing dependencies (using `npm` for this project), you should copy the Preflight styles into the root of the project.
 ```cp node_modules/tailwindcss/lib/css/preflight.css .```
