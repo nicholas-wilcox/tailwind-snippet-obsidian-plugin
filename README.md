@@ -18,7 +18,7 @@ At the time of writing, this plugin has not yet been submitted as a community pl
 Therefore, you must manually install this plugin, as you might do so for the [`hot-reload` plugin](https://github.com/pjeby/hot-reload).
 
 In the Releases section for this repository, you can find the zip archive that contains all of the individual files.
-Unzip that archive so that its contents are in a new directory called `unofficial-tailwindcss-obsidian-plugin/`.
+Unzip that archive so that its contents are in a new directory called `unofficial-tailwindcss-plugin/`.
 Then you should be good to go after restarting Obsidian and enabling the plugin.
 
 Don't forget to enable the generated CSS snippet after it appears.
