@@ -69,6 +69,11 @@ You can specify a custom Tailwind theme using a file path that is relative to yo
 The file contents should be a JSON object.
 This is useful if you want to replace or extend Tailwind's default theme.
 
+### Tailwind content
+
+You can specify file globs relative to your vault's configuration directory that will be included in Tailwind's process.
+You should use this if other files contain Tailwind CSS class names besides your Markdown files.
+
 ## Developer Notes
 
 Take note of the distinction between the name of the repository and the ID of the plugin.

@@ -8,6 +8,7 @@ export interface UnofficialTailwindPluginSettings {
 	prefixSelector: string;
 	entryPoint: string;
 	themeConfig: string;
+	contentConfig: string[];
 }
 
 export const DEFAULT_SETTINGS: UnofficialTailwindPluginSettings = {
@@ -16,6 +17,7 @@ export const DEFAULT_SETTINGS: UnofficialTailwindPluginSettings = {
 	prefixSelector: '.tailwind',
 	entryPoint: '',
 	themeConfig: '',
+	contentConfig: [],
 }
 
 export class SettingsTab extends PluginSettingTab {
@@ -87,6 +89,18 @@ export class SettingsTab extends PluginSettingTab {
 				.setValue(this.plugin.settings.themeConfig)
 				.onChange(async (value: string) => {
 					this.plugin.settings.themeConfig = value;
+					await this.plugin.saveSettings();
+				}));
+
+		const contentConfig = new Setting(containerEl)
+			.setName('Tailwind entrypoints')
+			.setDesc(`A comma-separated list of file globs that will be inspected by Tailwind
+					  (relative to your Vault's configuration folder).
+					  This will happen in addition to the usual processing of your Markdown files.`)
+			.addTextArea(text => text
+				.setValue(this.plugin.settings.contentConfig.join(',\n'))
+				.onChange(async value => {
+					this.plugin.settings.contentConfig = value.split(',').map(s => s.trim()).filter(s => Boolean(s));
 					await this.plugin.saveSettings();
 				}));
 	}

@@ -74,7 +74,10 @@ export default class UnofficialTailwindPlugin extends Plugin {
 		}
 
 		return {
-			content: this.vault.getMarkdownFiles().map(f => this.adapter.getFullPath(f.path)),
+			content: [
+				...this.vault.getMarkdownFiles().map(f => this.adapter.getFullPath(f.path)),
+				...this.settings.contentConfig.map(glob => this.adapter.getFullPath(normalizePath(this.vault.configDir + '/' + glob))),
+			],
 			theme,
 			plugins: this.tailwindPlugins,
 			corePlugins: {
