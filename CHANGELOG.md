@@ -20,18 +20,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Added `margin-left` to prefix selector setting to denote its dependency on the prefix selector toggle.
 - Custom TailwindCSS/PostCSS entrypoint setting.
 - Custom TailwindCSS theme setting.
 - Custom TailwindCSS content setting.
-
-### Fixed
-
-- Removed 'obsidian' from plugin ID in `manifest.json`.
-- Removed 'obsidian' from plugin ID in `README.md` installation instructions.
-
-### Added
-
-- Added `margin-left` to prefix selector setting to denote its dependency on the prefix selector toggle.
 
 ### Changed
 
@@ -40,6 +32,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Dynamically enable and disable the prefix selector setting when the feature is toggled.
+- Removed 'obsidian' from plugin ID in `manifest.json`.
+- Removed 'obsidian' from plugin ID in `README.md` installation instructions.
 
 ## [0.2.2] - 2023-07-01
 
