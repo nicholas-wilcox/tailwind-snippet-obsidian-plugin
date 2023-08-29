@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2023-08-29
+
 ### Fixed
 
 - Use correct value for plugin name that is also the name of the release archive.
@@ -74,7 +76,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   to generate a CSS snippet from a vault's Markdown files.
 - Users can opt to enable TailwindCSS's Preflight styles.
 
-[unreleased]: https://github.com/nicholas-wilcox/unofficial-tailwindcss-obsidian-plugin/compare/0.3.0...HEAD
+[unreleased]: https://github.com/nicholas-wilcox/unofficial-tailwindcss-obsidian-plugin/compare/0.3.1...HEAD
+[0.3.1]: https://github.com/nicholas-wilcox/unofficial-tailwindcss-obsidian-plugin/compare/0.3.0...0.3.1
 [0.3.0]: https://github.com/nicholas-wilcox/unofficial-tailwindcss-obsidian-plugin/compare/0.2.2...0.3.0
 [0.2.2]: https://github.com/nicholas-wilcox/unofficial-tailwindcss-obsidian-plugin/compare/0.2.1...0.2.2
 [0.2.1]: https://github.com/nicholas-wilcox/unofficial-tailwindcss-obsidian-plugin/compare/0.2.0...0.2.1
