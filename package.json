@@ -1,7 +1,7 @@
 {
-	"name": "obsidian-sample-plugin",
+	"name": "unofficial-tailwindcss-obsidian-plugin",
 	"version": "0.3.0",
-	"description": "This is an Obsidian plugin for using TailwindCSS utility classes",
+	"description": "Use TailwindCSS utility classes in your Obsidian vault's markup.",
 	"main": "main.js",
 	"scripts": {
 		"dev": "node esbuild.config.mjs",
