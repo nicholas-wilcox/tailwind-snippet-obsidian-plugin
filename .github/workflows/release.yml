@@ -6,7 +6,7 @@ on:
       - "*"
 
 env:
-  PLUGIN_NAME: ${{ github.event.repository.name }}
+  PLUGIN_NAME: unofficial-tailwindcss-plugin
 
 jobs:
   build:

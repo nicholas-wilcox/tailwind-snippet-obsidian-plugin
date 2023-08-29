@@ -16,6 +16,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Use correct value for plugin name that is also the name of the release archive.
+
 ## [0.3.0] - 2023-07-30
 
 ### Added
