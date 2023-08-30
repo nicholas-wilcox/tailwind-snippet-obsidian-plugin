@@ -62,7 +62,14 @@ export default class UnofficialTailwindPlugin extends Plugin {
 		});
 	}
 
-	async getTailwindConfig(): Promise<TailwindConfig> {
+	getTailwindContent(): string[] {
+		return [
+			...this.vault.getMarkdownFiles().map(f => this.adapter.getFullPath(f.path)),
+			...this.settings.contentConfig.map(glob => this.adapter.getFullPath(normalizePath(this.vault.configDir + '/' + glob))),
+		];
+	}
+
+	async getTailwindConfig(content: string[]): Promise<TailwindConfig> {
 		let theme: TailwindConfig['theme'];
 
 		if (Boolean(this.settings.themeConfig)) {
@@ -75,10 +82,7 @@ export default class UnofficialTailwindPlugin extends Plugin {
 		}
 
 		return {
-			content: [
-				...this.vault.getMarkdownFiles().map(f => this.adapter.getFullPath(f.path)),
-				...this.settings.contentConfig.map(glob => this.adapter.getFullPath(normalizePath(this.vault.configDir + '/' + glob))),
-			],
+			content,
 			theme,
 			plugins: this.tailwindPlugins,
 			corePlugins: {
@@ -101,8 +105,14 @@ export default class UnofficialTailwindPlugin extends Plugin {
 		const cssIn = normalizePath(this.vault.configDir + entryPoint);
 		const cssOut = normalizePath(this.vault.configDir + '/snippets/tailwind.css');
 
+		const tailwindContent = this.getTailwindContent();
+		if (tailwindContent.length === 0) {
+			console.log('Skipping tailwind processing because there is no content.');
+			return;
+		}
+
 		const postcssPlugins: AcceptedPlugin[] = [
-			tailwindcss(await this.getTailwindConfig()),
+			tailwindcss(await this.getTailwindConfig(tailwindContent)),
 			autoprefixer,
 		];
 

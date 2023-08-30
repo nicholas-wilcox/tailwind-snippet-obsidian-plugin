@@ -18,6 +18,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.3.1] - 2023-08-30
 
+### Changed
+
+- Skip main routine if no content is found for TailwindCSS to process.
+
 ### Fixed
 
 - Use correct value for plugin name that is also the name of the release archive.
