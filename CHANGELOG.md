@@ -16,11 +16,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.3.0] - 2023-08-29
+## [0.3.1] - 2023-08-30
 
 ### Fixed
 
 - Use correct value for plugin name that is also the name of the release archive.
+- Create snippets directory during onload if it does not already exist.
 
 ## [0.3.0] - 2023-07-30
 

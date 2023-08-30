@@ -27,6 +27,7 @@ export default class UnofficialTailwindPlugin extends Plugin {
 	async onload() {
 		await this.loadSettings();
 		await this.initPreflightPlugin();
+		await this.checkSnippetsDirectory();
 		await this.doTailwind();
 		this.registerEvent(this.vault.on('modify', () => this.doTailwind()));
 		this.addSettingTab(new SettingsTab(this.app, this));
@@ -83,6 +84,15 @@ export default class UnofficialTailwindPlugin extends Plugin {
 			corePlugins: {
 				preflight: false,
 			}
+		}
+	}
+
+	async checkSnippetsDirectory() {
+		const snippetsPath = normalizePath(this.vault.configDir + '/snippets');
+		if (await this.adapter.exists(snippetsPath)) {
+			return;
+		} else {
+			return this.adapter.mkdir(snippetsPath);
 		}
 	}
 
