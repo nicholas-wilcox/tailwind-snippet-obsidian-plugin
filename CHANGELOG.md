@@ -17,6 +17,8 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [0.4.1] - 2024-08-01
+
 ### Added
 
 -   Test Obsidian vault.
@@ -103,7 +105,9 @@ and this project adheres to
 -   Users can opt to enable TailwindCSS's Preflight styles.
 
 [unreleased]:
-	https://github.com/nicholas-wilcox/unofficial-tailwindcss-obsidian-plugin/compare/0.4.0...HEAD
+	https://github.com/nicholas-wilcox/unofficial-tailwindcss-obsidian-plugin/compare/0.4.1...HEAD
+[0.4.1]:
+	https://github.com/nicholas-wilcox/unofficial-tailwindcss-obsidian-plugin/compare/0.4.0...0.4.1
 [0.4.0]:
 	https://github.com/nicholas-wilcox/unofficial-tailwindcss-obsidian-plugin/compare/0.3.1...0.4.0
 [0.3.1]:
