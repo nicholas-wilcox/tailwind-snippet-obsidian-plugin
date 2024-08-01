@@ -20,7 +20,12 @@ and this project adheres to
 ### Added
 
 -   Test Obsidian vault.
+
+### Changed
+
 -   Better README
+-   Formatted code
+-   Changed wording in plugin settings
 
 ## [0.4.0] - 2024-07-30
 
