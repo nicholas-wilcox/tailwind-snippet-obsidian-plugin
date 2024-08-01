@@ -17,6 +17,10 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+-   Test Obsidian vault.
+
 ## [0.4.0] - 2024-07-30
 
 ### Changed

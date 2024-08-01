@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer {
+	.divClass {
+		@apply border-red-500 border-solid border-[1rem] p-4 max-w-[65ch];
+	}
+
+	.pClass {
+		@apply text-center text-xl font-bold tracking-wide;
+	}
+}
