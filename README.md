@@ -114,10 +114,30 @@ Tailwind CSS class names and use them to dynamically generate Markdown content.
 
 ## Developer Notes
 
-Take note of the distinction between the name of the repository and the ID of
-the plugin. Make sure that you clone this repository into a directory named
-`unofficial-tailwindcss-plugin`.
+This is a fork of Obsidian's sample plugin repository. Changes other than
+implementing this plugin include:
 
-After installing dependencies (using `npm` for this project), you should copy
-the Preflight styles into the root of the project.
-`cp node_modules/tailwindcss/lib/css/preflight.css .`
+-   Adding `predev` and `prebuild` NPM scripts to automatically copy Tailwind's
+    `preflight.css` file from `node_modules` into the project root.
+-   Taking some extra notes about GitHub workflows from Obsidian docs and
+    [pjeby's `hot-reload` plugin](https://github.com/pjeby/hot-reload).
+-   Adding a custom `esbuild` plugin to copy this plugin's files into a test
+    vault.
+
+### Test Vault
+
+This repository contains an example Obsidian vault to showcase and test the
+plugin's functionality. You will need to enable this plugin after initially
+opening the folder in Obsidian, and then you must enable the generated CSS
+snippet after that to see the effects.
+
+This repository also declares `hot-reload` as a submodule within the test
+vault's `.obsidian/plugins/` directory. In order to actually download
+`hot-reload`, you must run the following commands after cloning this repository:
+
+```bash
+git submodule init
+git submodule update
+```
+
+After that, you should be able to run `npm run dev` and then open the vault.

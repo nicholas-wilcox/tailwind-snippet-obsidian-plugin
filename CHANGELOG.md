@@ -20,6 +20,7 @@ and this project adheres to
 ### Added
 
 -   Test Obsidian vault.
+-   Better README
 
 ## [0.4.0] - 2024-07-30
 
