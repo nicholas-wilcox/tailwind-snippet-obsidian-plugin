@@ -6,11 +6,11 @@ vault.
 
 ## How it works
 
-This plugin effectively implements
-[Tailwind's PostCSS installation guide](https://tailwindcss.com/docs/installation/using-postcss),
-but with the [`postcss`](https://postcss.org/api/) JavaScript API. The output is
-a CSS snippet which **you must manually enable** once it is created. This
-snippet will update based on changes to your files and settings.
+This plugin implements
+[Tailwind's PostCSS installation guide](https://tailwindcss.com/docs/installation/using-postcss)
+with the [`postcss`](https://postcss.org/api/) JavaScript API. This produces a
+CSS snippet which **you must manually enable** once it is created. This snippet
+will automatically update based on changes to your files and settings.
 
 This plugin makes use of the
 [FileSystemAdapter](https://docs.obsidian.md/Reference/TypeScript+API/FileSystemAdapter/FileSystemAdapter)
@@ -46,7 +46,7 @@ built with [Electron](https://www.electronjs.org/). Additionally, Preflight
 styles conflict with Obsidian's base styles such that:
 
 1. the Obsidian UI is affected by Preflight styles, and
-2. some Preflight styles are overriden by Obsidian styles.
+2. some Preflight styles are overshadowed by Obsidian styles.
 
 Therefore, this plugin (the Unofficial TailwindCSS Obsidian Plugin) does not
 apply Preflight styles by default. You can enable Preflight in the plugin
@@ -64,6 +64,12 @@ so that `.a, #foo.bar` becomes `.tailwind .a, .tailwind #foo.bar`.
 You can configure this so that only certain notes (or even certain sections of
 notes) are affected by Tailwind.
 
+#### Combining with Preflight setting
+
+You may have mixed success with the Preflight setting described above. If
+Obsidian's CSS rules are taking precedence over Preflight's styles, then setting
+a prefix selector may help Preflight take control.
+
 ### PostCSS entrypoint
 
 By default, this plugin will use Tailwind's default input template, which
@@ -76,8 +82,12 @@ combines three of its directives:
 ```
 
 You can specify a custom entrypoint using a file path that is relative to your
-vault's configuration directory. This is useful if you want to use Tailwind's
-`@layer` directive for your own purposes.
+vault's configuration directory (`.obsidian/`. This is useful if you want to use
+Tailwind's `@layer` directive for your own purposes.
+
+See
+[Using CSS and @layer](https://tailwindcss.com/docs/adding-custom-styles#using-css-and-layer)
+from Tailwind's documentation for more information.
 
 ### Tailwind theme
 
@@ -85,11 +95,22 @@ You can specify a custom Tailwind theme using a file path that is relative to
 your vault's configuration directory. The file contents should be a JSON object.
 This is useful if you want to replace or extend Tailwind's default theme.
 
+Two caveats to this setting:
+
+-   This is different from the entire Tailwind configuration object. You may
+    **not** use a `tailwind.config.js` file that exports a JavaScipt module.
+-   You may **not**
+    [dynamically reference other values](https://tailwindcss.com/docs/theme#referencing-other-values)
+    or the
+    [default theme](https://tailwindcss.com/docs/theme#referencing-other-values).
+
+For now, you are limited to the themes you can define with a static JSON file.
+
 ### Tailwind content
 
 You can specify file globs relative to your vault's configuration directory that
-will be included in Tailwind's process. You should use this if other files
-contain Tailwind CSS class names besides your Markdown files.
+will be included in Tailwind's process. This is helpful if other files contain
+Tailwind CSS class names and use them to dynamically generate Markdown content.
 
 ## Developer Notes
 
