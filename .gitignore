@@ -25,3 +25,7 @@ data.json
 
 # Exclude preflight stylesheet copied from tailwindcss package
 preflight.css
+
+# Exclude files that are copied into or generated in test vault
+Test\ Vault/.obsidian/plugins/unofficial-tailwindcss-plugin
+Test\ Vault/.obsidian/snippets/tailwind.css
