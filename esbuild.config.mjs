@@ -1,7 +1,7 @@
 import esbuild from "esbuild";
 import process from "process";
 import builtins from "builtin-modules";
-import { copyFile, mkdir } from "fs/promises";
+import { copyFile, mkdir, writeFile } from "fs/promises";
 import { resolve } from "path";
 import { existsSync } from "fs";
 
@@ -13,6 +13,7 @@ if you want to view the source, please visit the github repository of this plugi
 
 const testVaultPluginPath =
 	"Test Vault/.obsidian/plugins/unofficial-tailwindcss-plugin";
+const hotReloadPath = resolve(testVaultPluginPath, ".hotreload");
 const pluginFiles = [
 	"main.js",
 	"manifest.json",
@@ -69,6 +70,14 @@ const context = await esbuild.context({
 									file,
 									resolve(testVaultPluginPath, file),
 								);
+
+								// This is to make hot-reload work
+								if (!existsSync(hotReloadPath)) {
+									console.log(
+										`Creating file "${hotReloadPath}"`,
+									);
+									await writeFile(hotReloadPath, "");
+								}
 							}
 						} catch (e) {
 							console.error(
