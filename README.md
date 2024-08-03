@@ -119,8 +119,7 @@ implementing this plugin include:
 
 -   Adding `predev` and `prebuild` NPM scripts to automatically copy Tailwind's
     `preflight.css` file from `node_modules` into the project root.
--   Taking some extra notes about GitHub workflows from Obsidian docs and
-    [pjeby's `hot-reload` plugin](https://github.com/pjeby/hot-reload).
+-   Various modifications to the release GitHub workflow.
 -   Adding a custom `esbuild` plugin to copy this plugin's files into a test
     vault.
 
@@ -131,8 +130,11 @@ plugin's functionality. You will need to enable this plugin after initially
 opening the folder in Obsidian, and then you must enable the generated CSS
 snippet after that to see the effects.
 
-This repository also declares `hot-reload` as a submodule within the test
-vault's `.obsidian/plugins/` directory. In order to actually download
+### `hot-reload`
+
+This repository also declares pjeby's
+[`hot-reload`](https://github.com/pjeby/hot-reload) plugin as a submodule within
+the test vault's `.obsidian/plugins/` directory. In order to actually download
 `hot-reload`, you must run the following commands after cloning this repository:
 
 ```bash
