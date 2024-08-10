@@ -16,6 +16,10 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+-   Ribbon icon to manually refresh the generated CSS snippet.
+
 ## [0.4.1] - 2024-08-01
 
 ### Added

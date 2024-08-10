@@ -1,4 +1,4 @@
-import { FileSystemAdapter, Plugin, normalizePath } from "obsidian";
+import { FileSystemAdapter, Plugin, normalizePath, addIcon } from "obsidian";
 import postcss, { AcceptedPlugin } from "postcss";
 import prefixer from "postcss-prefix-selector";
 import autoprefixer from "autoprefixer";
@@ -11,6 +11,7 @@ import {
 	SettingsTab,
 } from "./settings";
 import { id as pluginId } from "./manifest.json";
+import { paintRollerSvg } from "paint-roller";
 
 export default class UnofficialTailwindPlugin extends Plugin {
 	settings: UnofficialTailwindPluginSettings;
@@ -35,6 +36,15 @@ export default class UnofficialTailwindPlugin extends Plugin {
 		await this.doTailwind();
 		this.registerEvent(this.vault.on("modify", () => this.doTailwind()));
 		this.addSettingTab(new SettingsTab(this.app, this));
+
+		addIcon("paint-roller", paintRollerSvg);
+		this.addRibbonIcon(
+			"paint-roller",
+			"Refresh tailwind.css snippet",
+			async () => {
+				await this.doTailwind();
+			},
+		);
 	}
 
 	onunload() {}
