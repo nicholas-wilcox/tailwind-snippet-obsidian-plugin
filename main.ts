@@ -12,6 +12,7 @@ import {
 } from "./settings";
 import { id as pluginId } from "./manifest.json";
 import { paintRollerSvg } from "paint-roller";
+import { INFO, DEBUG, ERROR } from "log";
 
 export default class UnofficialTailwindPlugin extends Plugin {
 	settings: UnofficialTailwindPluginSettings;
@@ -30,21 +31,27 @@ export default class UnofficialTailwindPlugin extends Plugin {
 	}
 
 	async onload() {
-		await this.loadSettings();
-		await this.initPreflightPlugin();
-		await this.checkSnippetsDirectory();
-		await this.doTailwind();
-		this.registerEvent(this.vault.on("modify", () => this.doTailwind()));
-		this.addSettingTab(new SettingsTab(this.app, this));
+		try {
+			await this.loadSettings();
+			await this.initPreflightPlugin();
+			await this.checkSnippetsDirectory();
+			await this.doTailwind();
+			this.registerEvent(
+				this.vault.on("modify", () => this.doTailwind()),
+			);
+			this.addSettingTab(new SettingsTab(this.app, this));
 
-		addIcon("paint-roller", paintRollerSvg);
-		this.addRibbonIcon(
-			"paint-roller",
-			"Refresh tailwind.css snippet",
-			async () => {
-				await this.doTailwind();
-			},
-		);
+			addIcon("paint-roller", paintRollerSvg);
+			this.addRibbonIcon(
+				"paint-roller",
+				"Refresh tailwind.css snippet",
+				async () => {
+					await this.doTailwind();
+				},
+			);
+		} catch (e) {
+			ERROR(e.toString());
+		}
 	}
 
 	onunload() {}
@@ -133,42 +140,56 @@ export default class UnofficialTailwindPlugin extends Plugin {
 	}
 
 	async doTailwind() {
-		const entryPoint = Boolean(this.settings.entryPoint)
-			? "/" + this.settings.entryPoint
-			: `/plugins/${pluginId}/tailwind.css`;
-		const cssIn = normalizePath(this.vault.configDir + entryPoint);
-		const cssOut = normalizePath(
-			this.vault.configDir + "/snippets/tailwind.css",
-		);
-
-		const tailwindContent = this.getTailwindContent();
-		if (tailwindContent.length === 0) {
-			console.log(
-				"Skipping tailwind processing because there is no content.",
+		try {
+			const entryPoint = Boolean(this.settings.entryPoint)
+				? "/" + this.settings.entryPoint
+				: `/plugins/${pluginId}/tailwind.css`;
+			const cssIn = normalizePath(this.vault.configDir + entryPoint);
+			const cssOut = normalizePath(
+				this.vault.configDir + "/snippets/tailwind.css",
 			);
-			return;
-		}
 
-		const postcssPlugins: AcceptedPlugin[] = [
-			tailwindcss(await this.getTailwindConfig(tailwindContent)),
-			autoprefixer,
-		];
+			const tailwindContent = this.getTailwindContent();
+			if (tailwindContent.length === 0) {
+				DEBUG(
+					"Skipping tailwind processing because there is no content.",
+				);
+				return;
+			}
 
-		if (this.settings.addPrefixSelector) {
-			// @ts-ignore
-			// The postcss-prefix-selector export's return value is declared as
-			// `(root: any) => string | undefined`, so it's basically like a TransformCallback.
-			postcssPlugins.push(
-				prefixer({
-					prefix: this.settings.prefixSelector,
-				}),
+			const postcssPlugins: AcceptedPlugin[] = [
+				tailwindcss(await this.getTailwindConfig(tailwindContent)),
+				autoprefixer,
+			];
+
+			if (this.settings.addPrefixSelector) {
+				// @ts-ignore
+				// The postcss-prefix-selector export's return value is declared as
+				// `(root: any) => string | undefined`, so it's basically like a TransformCallback.
+				postcssPlugins.push(
+					prefixer({
+						prefix: this.settings.prefixSelector,
+					}),
+				);
+			}
+
+			const result = await postcss(postcssPlugins).process(
+				await this.adapter.read(cssIn),
+				{ from: cssIn, to: cssOut },
 			);
-		}
 
-		const result = await postcss(postcssPlugins).process(
-			await this.adapter.read(cssIn),
-			{ from: cssIn, to: cssOut },
-		);
-		await this.adapter.write(cssOut, result.css);
+			if (await this.adapter.exists(cssOut)) {
+				const currentCss = await this.adapter.read(cssOut);
+				if (result.css === currentCss) {
+					DEBUG("New CSS snippet is identical to the old one.");
+					return;
+				}
+			}
+
+			INFO(`Overwriting ${cssOut}`);
+			await this.adapter.write(cssOut, result.css);
+		} catch (e) {
+			ERROR(e.toString());
+		}
 	}
 }

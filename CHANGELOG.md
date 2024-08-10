@@ -19,6 +19,7 @@ and this project adheres to
 ### Added
 
 -   Ribbon icon to manually refresh the generated CSS snippet.
+-   The `debug` NPM package as a dependency.
 
 ## [0.4.1] - 2024-08-01
 
