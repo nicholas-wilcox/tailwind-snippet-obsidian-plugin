@@ -19,6 +19,7 @@ const pluginFiles = [
 	"manifest.json",
 	"tailwind.css",
 	"preflight.css",
+	"styles.css",
 ];
 
 const prod = process.argv[2] === "production";
