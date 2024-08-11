@@ -1,4 +1,10 @@
-import { FileSystemAdapter, Plugin, normalizePath, addIcon } from "obsidian";
+import {
+	FileSystemAdapter,
+	Plugin,
+	normalizePath,
+	addIcon,
+	Notice,
+} from "obsidian";
 import postcss, { AcceptedPlugin } from "postcss";
 import prefixer from "postcss-prefix-selector";
 import autoprefixer from "autoprefixer";
@@ -46,7 +52,12 @@ export default class UnofficialTailwindPlugin extends Plugin {
 				"paint-roller",
 				"Refresh tailwind.css snippet",
 				async () => {
-					await this.doTailwind();
+					try {
+						await this.doTailwind();
+						new Notice("Refreshed tailwind.css snippet.");
+					} catch (e) {
+						ERROR(e.toString());
+					}
 				},
 			);
 		} catch (e) {
