@@ -22,6 +22,7 @@ and this project adheres to
 -   The `debug` NPM package as a dependency.
 -   Notices
     -   On manual refreshes
+    -   On errors
 
 ## [0.4.1] - 2024-08-01
 

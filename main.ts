@@ -56,16 +56,21 @@ export default class UnofficialTailwindPlugin extends Plugin {
 						await this.doTailwind();
 						new Notice("Refreshed tailwind.css snippet.");
 					} catch (e) {
-						ERROR(e.toString());
+						this.handleError(e);
 					}
 				},
 			);
 		} catch (e) {
-			ERROR(e.toString());
+			this.handleError(e);
 		}
 	}
 
 	onunload() {}
+
+	handleError(e: Error) {
+		ERROR(e.toString());
+		new Notice(e.toString());
+	}
 
 	async loadSettings() {
 		this.settings = Object.assign(
@@ -200,7 +205,7 @@ export default class UnofficialTailwindPlugin extends Plugin {
 			INFO(`Overwriting ${cssOut}`);
 			await this.adapter.write(cssOut, result.css);
 		} catch (e) {
-			ERROR(e.toString());
+			this.handleError(e);
 		}
 	}
 }
