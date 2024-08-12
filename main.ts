@@ -68,6 +68,7 @@ export default class UnofficialTailwindPlugin extends Plugin {
 	onunload() {}
 
 	handleError(e: Error) {
+		console.error(e);
 		ERROR(e.toString());
 		new Notice(e.toString());
 	}
