@@ -1,3 +1,23 @@
 .setting-item.prefix-selector {
 	margin-left: var(--size-4-8);
 }
+
+.setting-item-control.error input[type="text"] {
+	border-color: var(--background-modifier-error);
+}
+
+.setting-item-control.error input[type="text"]:focus {
+	box-shadow: 0 0 0 2px var(--background-modifier-error-hover);
+}
+
+.setting-item-control.error {
+	position: relative;
+}
+
+.setting-item-control.error .error-message {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	color: var(--background-modifier-error);
+	text-align: left;
+}

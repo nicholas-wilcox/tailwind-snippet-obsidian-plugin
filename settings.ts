@@ -1,4 +1,4 @@
-import { App, PluginSettingTab, Setting } from "obsidian";
+import { App, normalizePath, PluginSettingTab, Setting } from "obsidian";
 import UnofficialTailwindPlugin from "./main";
 
 export interface UnofficialTailwindPluginSettings {
@@ -25,6 +25,37 @@ export class SettingsTab extends PluginSettingTab {
 	constructor(app: App, plugin: UnofficialTailwindPlugin) {
 		super(app, plugin);
 		this.plugin = plugin;
+	}
+
+	get configDir() {
+		return this.plugin.vault.configDir;
+	}
+
+	async exists(path: string, sensitive?: boolean) {
+		return this.plugin.adapter.exists(path, sensitive);
+	}
+
+	async testFile(path: string) {
+		return this.exists(normalizePath(`${this.configDir}/${path}`));
+	}
+
+	setErrorMessage(controlEl: HTMLElement, message?: string) {
+		if (message) {
+			let errorMessage: HTMLElement | null =
+				controlEl.querySelector(".error-message");
+			if (errorMessage === null) {
+				errorMessage = document.createElement("span");
+				errorMessage.addClass("error-message");
+				controlEl.appendChild(errorMessage);
+			}
+			errorMessage.innerText = message;
+			controlEl.addClass("error");
+		} else {
+			controlEl.removeClass("error");
+			controlEl
+				.querySelectorAll(".error-message")
+				.forEach((el) => el.remove());
+		}
 	}
 
 	display(): void {
@@ -85,14 +116,22 @@ export class SettingsTab extends PluginSettingTab {
 				`A custom CSS snippet that will be processed by PostCSS and Tailwind instead of the prepackaged input file.
 					  See the TailwindCSS documentation for more details.`,
 			)
-			.addText((text) =>
-				text
-					.setValue(this.plugin.settings.entryPoint)
-					.onChange(async (value: string) => {
-						this.plugin.settings.entryPoint = value;
-						await this.plugin.saveSettings();
-					}),
-			);
+			.addText((text) => {
+				text.setValue(this.plugin.settings.entryPoint).onChange(
+					async (value: string) => {
+						if (value === "" || (await this.testFile(value))) {
+							this.plugin.settings.entryPoint = value;
+							this.setErrorMessage(entryPoint.controlEl);
+							await this.plugin.saveSettings();
+						} else {
+							this.setErrorMessage(
+								entryPoint.controlEl,
+								`Could not find file "${value}"`,
+							);
+						}
+					},
+				);
+			});
 
 		const themeConfig = new Setting(containerEl)
 			.setName("Tailwind theme")
@@ -105,8 +144,16 @@ export class SettingsTab extends PluginSettingTab {
 				text
 					.setValue(this.plugin.settings.themeConfig)
 					.onChange(async (value: string) => {
-						this.plugin.settings.themeConfig = value;
-						await this.plugin.saveSettings();
+						if (value === "" || (await this.testFile(value))) {
+							this.plugin.settings.entryPoint = value;
+							this.setErrorMessage(themeConfig.controlEl);
+							await this.plugin.saveSettings();
+						} else {
+							this.setErrorMessage(
+								themeConfig.controlEl,
+								`Could not find file "${value}"`,
+							);
+						}
 					}),
 			);
 

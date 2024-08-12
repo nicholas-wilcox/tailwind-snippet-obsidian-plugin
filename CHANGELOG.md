@@ -23,6 +23,7 @@ and this project adheres to
 -   Notices
     -   On manual refreshes
     -   On errors
+-   Safeguard and visual feedback for file-based settings.
 
 ## [0.4.1] - 2024-08-01
 
