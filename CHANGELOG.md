@@ -19,7 +19,8 @@ and this project adheres to
 ### Changed
 
 - Use NodeJS version 20 in GitHub release workflow.
-- Formatting rules (2 spaces instead of tabs)
+- Formatting rules (2 spaces instead of tabs).
+- Altered descriptions for some settings.
 
 ## [0.5.0] - 2024-08-13
 

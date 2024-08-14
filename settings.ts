@@ -92,7 +92,7 @@ export class SettingsTab extends PluginSettingTab {
     const prefixSelectorSetting = new Setting(containerEl)
       .setName("Prefix selector")
       .setDesc(
-        `Will be combined with all Tailwind selectors using a descendant combinator. (e.g. ".a, #foo.bar" => ".tailwind .a, .tailwind #foo.bar")`,
+        `Will be combined with all Tailwind selectors using a descendant combinator. (e.g. ".myClass, #sectionId" => ".tailwind .myClass, .tailwind #sectionId")`,
       )
       .setClass("prefix-selector")
       .addText((text) =>
@@ -108,7 +108,7 @@ export class SettingsTab extends PluginSettingTab {
     const entryPoint = new Setting(containerEl)
       .setName("PostCSS entrypoint")
       .setDesc(
-        `A custom CSS snippet that will be processed by PostCSS and Tailwind instead of the prepackaged input file. See the TailwindCSS documentation for more details.`,
+        `A custom CSS snippet that will be processed by PostCSS and Tailwind instead of the prepackaged input file.`,
       )
       .addText((text) => {
         text
@@ -130,7 +130,7 @@ export class SettingsTab extends PluginSettingTab {
     const themeConfig = new Setting(containerEl)
       .setName("Tailwind theme")
       .setDesc(
-        `The theme of the Tailwind configuration object. This can be used to extend or replace the default theme. See the TailwindCSS documentation for more details.`,
+        `The theme of the Tailwind configuration object. This can be used to extend or replace the default theme.`,
       )
       .addText((text) =>
         text
@@ -152,7 +152,7 @@ export class SettingsTab extends PluginSettingTab {
     const contentConfig = new Setting(containerEl)
       .setName("Tailwind entrypoints")
       .setDesc(
-        `A comma-separated list of file globs that will be inspected by Tailwind (relative to your Vault's configuration folder). This will happen in addition to the usual processing of your Markdown files.`,
+        `A comma-separated list of file globs (relative to your Vault's configuration folder) that will be inspected by Tailwind in addition to your notes`,
       )
       .addTextArea((text) =>
         text
