@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer {
+@layer base {
 	.divClass {
 		@apply border-red-500 border-solid border-[1rem] p-4 max-w-[65ch];
 	}
