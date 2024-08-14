@@ -145,7 +145,7 @@ export class SettingsTab extends PluginSettingTab {
 					.setValue(this.plugin.settings.themeConfig)
 					.onChange(async (value: string) => {
 						if (value === "" || (await this.testFile(value))) {
-							this.plugin.settings.entryPoint = value;
+							this.plugin.settings.themeConfig = value;
 							this.setErrorMessage(themeConfig.controlEl);
 							await this.plugin.saveSettings();
 						} else {
