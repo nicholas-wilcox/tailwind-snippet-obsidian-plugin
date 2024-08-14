@@ -195,14 +195,6 @@ export default class UnofficialTailwindPlugin extends Plugin {
 				{ from: cssIn, to: cssOut },
 			);
 
-			if (await this.adapter.exists(cssOut)) {
-				const currentCss = await this.adapter.read(cssOut);
-				if (result.css === currentCss) {
-					DEBUG("New CSS snippet is identical to the old one.");
-					return;
-				}
-			}
-
 			INFO(`Overwriting ${cssOut}`);
 			await this.adapter.write(cssOut, result.css);
 		} catch (e) {
