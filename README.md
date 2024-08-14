@@ -104,12 +104,12 @@ This is useful if you want to replace or extend Tailwind's default theme.
 
 Two caveats to this setting:
 
--   This is different from the entire Tailwind configuration object. You may
-    **not** use a `tailwind.config.js` file that exports a JavaScipt module.
--   You may **not**
-    [dynamically reference other values](https://tailwindcss.com/docs/theme#referencing-other-values)
-    or the
-    [default theme](https://tailwindcss.com/docs/theme#referencing-other-values).
+- This is different from the entire Tailwind configuration object. You may
+  **not** use a `tailwind.config.js` file that exports a JavaScipt module.
+- You may **not**
+  [dynamically reference other values](https://tailwindcss.com/docs/theme#referencing-other-values)
+  or the
+  [default theme](https://tailwindcss.com/docs/theme#referencing-other-values).
 
 For now, you are limited to the themes you can define with a static JSON file.
 
@@ -124,11 +124,11 @@ Tailwind CSS class names and use them to dynamically generate Markdown content.
 This is a fork of Obsidian's sample plugin repository. Changes other than
 implementing this plugin include:
 
--   Adding `predev` and `prebuild` NPM scripts to automatically copy Tailwind's
-    `preflight.css` file from `node_modules` into the project root.
--   Various modifications to the release GitHub workflow.
--   Adding a custom `esbuild` plugin to copy this plugin's files into a test
-    vault.
+- Adding `predev` and `prebuild` NPM scripts to automatically copy Tailwind's
+  `preflight.css` file from `node_modules` into the project root.
+- Various modifications to the release GitHub workflow.
+- Adding a custom `esbuild` plugin to copy this plugin's files into a test
+  vault.
 
 ### Test Vault
 

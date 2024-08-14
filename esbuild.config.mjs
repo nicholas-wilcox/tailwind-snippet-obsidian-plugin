@@ -12,89 +12,80 @@ if you want to view the source, please visit the github repository of this plugi
 `;
 
 const testVaultPluginPath =
-	"Test Vault/.obsidian/plugins/unofficial-tailwindcss-plugin";
+  "Test Vault/.obsidian/plugins/unofficial-tailwindcss-plugin";
 const hotReloadPath = resolve(testVaultPluginPath, ".hotreload");
 const pluginFiles = [
-	"main.js",
-	"manifest.json",
-	"tailwind.css",
-	"preflight.css",
-	"styles.css",
+  "main.js",
+  "manifest.json",
+  "tailwind.css",
+  "preflight.css",
+  "styles.css",
 ];
 
 const prod = process.argv[2] === "production";
 const entry = process.argv[3] ?? "main.ts";
 
 const context = await esbuild.context({
-	banner: {
-		js: banner,
-	},
-	entryPoints: [entry],
-	bundle: true,
-	external: [
-		"obsidian",
-		"electron",
-		"@codemirror/autocomplete",
-		"@codemirror/collab",
-		"@codemirror/commands",
-		"@codemirror/language",
-		"@codemirror/lint",
-		"@codemirror/search",
-		"@codemirror/state",
-		"@codemirror/view",
-		"@lezer/common",
-		"@lezer/highlight",
-		"@lezer/lr",
-		...builtins,
-	],
-	format: "cjs",
-	target: "esnext",
-	logLevel: "info",
-	sourcemap: prod ? false : "inline",
-	treeShaking: true,
-	outfile: "main.js",
-	plugins: [
-		{
-			name: "Copy build to test vault",
-			setup(build) {
-				build.onEnd(async (result) => {
-					if (!result.errors.length) {
-						try {
-							if (!existsSync(testVaultPluginPath)) {
-								console.log(
-									`Creating directory "${testVaultPluginPath}"`,
-								);
-								await mkdir(testVaultPluginPath);
-							}
-							for (const file of pluginFiles) {
-								await copyFile(
-									file,
-									resolve(testVaultPluginPath, file),
-								);
+  banner: {
+    js: banner,
+  },
+  entryPoints: [entry],
+  bundle: true,
+  external: [
+    "obsidian",
+    "electron",
+    "@codemirror/autocomplete",
+    "@codemirror/collab",
+    "@codemirror/commands",
+    "@codemirror/language",
+    "@codemirror/lint",
+    "@codemirror/search",
+    "@codemirror/state",
+    "@codemirror/view",
+    "@lezer/common",
+    "@lezer/highlight",
+    "@lezer/lr",
+    ...builtins,
+  ],
+  format: "cjs",
+  target: "esnext",
+  logLevel: "info",
+  sourcemap: prod ? false : "inline",
+  treeShaking: true,
+  outfile: "main.js",
+  plugins: [
+    {
+      name: "Copy build to test vault",
+      setup(build) {
+        build.onEnd(async (result) => {
+          if (!result.errors.length) {
+            try {
+              if (!existsSync(testVaultPluginPath)) {
+                console.log(`Creating directory "${testVaultPluginPath}"`);
+                await mkdir(testVaultPluginPath);
+              }
+              for (const file of pluginFiles) {
+                await copyFile(file, resolve(testVaultPluginPath, file));
 
-								// This is to make hot-reload work
-								if (!existsSync(hotReloadPath)) {
-									console.log(
-										`Creating file "${hotReloadPath}"`,
-									);
-									await writeFile(hotReloadPath, "");
-								}
-							}
-						} catch (e) {
-							console.error(
-								`Error when copying build.\n${e.toString()}`,
-							);
-						}
-					}
-				});
-			},
-		},
-	],
+                // This is to make hot-reload work
+                if (!existsSync(hotReloadPath)) {
+                  console.log(`Creating file "${hotReloadPath}"`);
+                  await writeFile(hotReloadPath, "");
+                }
+              }
+            } catch (e) {
+              console.error(`Error when copying build.\n${e.toString()}`);
+            }
+          }
+        });
+      },
+    },
+  ],
 });
 
 if (prod) {
-	await context.rebuild();
-	process.exit(0);
+  await context.rebuild();
+  process.exit(0);
 } else {
-	await context.watch();
+  await context.watch();
 }
