@@ -16,6 +16,10 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Changed
+
+-   Use NodeJS version 20 in GitHub release workflow.
+
 ## [0.5.0] - 2024-08-13
 
 ### Added
