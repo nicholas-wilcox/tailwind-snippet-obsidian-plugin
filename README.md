@@ -16,6 +16,13 @@ This plugin makes use of the
 [FileSystemAdapter](https://docs.obsidian.md/Reference/TypeScript+API/FileSystemAdapter/FileSystemAdapter)
 API to read and write files in your vault's configuration directory.
 
+This plugin adds a ribbon icon that allows you to manually trigger a refresh of
+the generated CSS snippet. This can be useful when non-Markdown files contain
+Tailwind classes.
+
+If you aren't seeing changes that you expect, you may need to manually restart
+the plugin.
+
 ## Installation
 
 At the time of writing, this plugin has not yet been submitted as a community
