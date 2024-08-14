@@ -1,0 +1,5 @@
+This file contains Tailwind classnames that are used in a test page.
+Because the page itself doesn't use the classname properly,
+you need to manually add it to the plugin settings.
+
+p-8

@@ -38,3 +38,5 @@ Test\ Vault/.obsidian/workspace.json
 Test\ Vault/.obsidian/plugins/unofficial-tailwindcss-plugin
 Test\ Vault/.obsidian/snippets/tailwind.css
 
+# Exclude other plugin
+Test\ Vault/.obsidian/plugins/dataview

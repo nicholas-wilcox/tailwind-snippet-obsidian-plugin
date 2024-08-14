@@ -113,7 +113,7 @@ Two caveats to this setting:
 
 For now, you are limited to the themes you can define with a static JSON file.
 
-### Tailwind content
+### Tailwind entrypoints
 
 You can specify file globs relative to your vault's configuration directory that
 will be included in Tailwind's process. This is helpful if other files contain
