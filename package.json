@@ -1,6 +1,6 @@
 {
   "name": "unofficial-tailwindcss-obsidian-plugin",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Use TailwindCSS utility classes in your Obsidian vault's markup.",
   "main": "main.js",
   "scripts": {

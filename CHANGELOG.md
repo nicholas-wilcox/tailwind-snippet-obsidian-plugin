@@ -16,6 +16,8 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [0.5.1] - 2024-08-14
+
 ### Changed
 
 - Use NodeJS version 20 in GitHub release workflow.
@@ -121,7 +123,8 @@ and this project adheres to
   and PostCSS to generate a CSS snippet from a vault's Markdown files.
 - Users can opt to enable TailwindCSS's Preflight styles.
 
-[unreleased]: https://github.com/nicholas-wilcox/unofficial-tailwindcss-obsidian-plugin/compare/0.5.0...HEAD
+[unreleased]: https://github.com/nicholas-wilcox/unofficial-tailwindcss-obsidian-plugin/compare/0.5.1...HEAD
+[0.5.1]: https://github.com/nicholas-wilcox/unofficial-tailwindcss-obsidian-plugin/compare/0.5.0...0.5.1
 [0.5.0]: https://github.com/nicholas-wilcox/unofficial-tailwindcss-obsidian-plugin/compare/0.4.1...0.5.0
 [0.4.1]: https://github.com/nicholas-wilcox/unofficial-tailwindcss-obsidian-plugin/compare/0.4.0...0.4.1
 [0.4.0]: https://github.com/nicholas-wilcox/unofficial-tailwindcss-obsidian-plugin/compare/0.3.1...0.4.0
