@@ -11,8 +11,7 @@ if you want to view the source, please visit the github repository of this plugi
 */
 `;
 
-const testVaultPluginPath =
-  "Test Vault/.obsidian/plugins/unofficial-tailwindcss-plugin";
+const testVaultPluginPath = "Test Vault/.obsidian/plugins/tailwind-snippet";
 const hotReloadPath = resolve(testVaultPluginPath, ".hotreload");
 const pluginFiles = [
   "main.js",

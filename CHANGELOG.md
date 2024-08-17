@@ -16,6 +16,11 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Changed
+
+- Change project name to `tailwind-snippet-obsidian-plugin` and plugin id to `tailwind-snippet`.
+- Change class names to `TailwindSnippet`.
+
 ## [0.5.1] - 2024-08-14
 
 ### Changed
@@ -123,14 +128,14 @@ and this project adheres to
   and PostCSS to generate a CSS snippet from a vault's Markdown files.
 - Users can opt to enable TailwindCSS's Preflight styles.
 
-[unreleased]: https://github.com/nicholas-wilcox/unofficial-tailwindcss-obsidian-plugin/compare/0.5.1...HEAD
-[0.5.1]: https://github.com/nicholas-wilcox/unofficial-tailwindcss-obsidian-plugin/compare/0.5.0...0.5.1
-[0.5.0]: https://github.com/nicholas-wilcox/unofficial-tailwindcss-obsidian-plugin/compare/0.4.1...0.5.0
-[0.4.1]: https://github.com/nicholas-wilcox/unofficial-tailwindcss-obsidian-plugin/compare/0.4.0...0.4.1
-[0.4.0]: https://github.com/nicholas-wilcox/unofficial-tailwindcss-obsidian-plugin/compare/0.3.1...0.4.0
-[0.3.1]: https://github.com/nicholas-wilcox/unofficial-tailwindcss-obsidian-plugin/compare/0.3.0...0.3.1
-[0.3.0]: https://github.com/nicholas-wilcox/unofficial-tailwindcss-obsidian-plugin/compare/0.2.2...0.3.0
-[0.2.2]: https://github.com/nicholas-wilcox/unofficial-tailwindcss-obsidian-plugin/compare/0.2.1...0.2.2
-[0.2.1]: https://github.com/nicholas-wilcox/unofficial-tailwindcss-obsidian-plugin/compare/0.2.0...0.2.1
-[0.2.0]: https://github.com/nicholas-wilcox/unofficial-tailwindcss-obsidian-plugin/compare/0.1.0...0.2.0
-[0.1.0]: https://github.com/nicholas-wilcox/unofficial-tailwindcss-obsidian-plugin/releases/tag/0.1.0
+[unreleased]: https://github.com/nicholas-wilcox/tailwind-snippet-obsidian-plugin/compare/0.5.1...HEAD
+[0.5.1]: https://github.com/nicholas-wilcox/tailwind-snippet-obsidian-plugin/compare/0.5.0...0.5.1
+[0.5.0]: https://github.com/nicholas-wilcox/tailwind-snippet-obsidian-plugin/compare/0.4.1...0.5.0
+[0.4.1]: https://github.com/nicholas-wilcox/tailwind-snippet-obsidian-plugin/compare/0.4.0...0.4.1
+[0.4.0]: https://github.com/nicholas-wilcox/tailwind-snippet-obsidian-plugin/compare/0.3.1...0.4.0
+[0.3.1]: https://github.com/nicholas-wilcox/tailwind-snippet-obsidian-plugin/compare/0.3.0...0.3.1
+[0.3.0]: https://github.com/nicholas-wilcox/tailwind-snippet-obsidian-plugin/compare/0.2.2...0.3.0
+[0.2.2]: https://github.com/nicholas-wilcox/tailwind-snippet-obsidian-plugin/compare/0.2.1...0.2.2
+[0.2.1]: https://github.com/nicholas-wilcox/tailwind-snippet-obsidian-plugin/compare/0.2.0...0.2.1
+[0.2.0]: https://github.com/nicholas-wilcox/tailwind-snippet-obsidian-plugin/compare/0.1.0...0.2.0
+[0.1.0]: https://github.com/nicholas-wilcox/tailwind-snippet-obsidian-plugin/releases/tag/0.1.0

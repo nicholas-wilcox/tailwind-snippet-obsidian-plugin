@@ -6,7 +6,7 @@ on:
       - "*"
 
 env:
-  PLUGIN_NAME: unofficial-tailwindcss-plugin
+  PLUGIN_NAME: tailwind-snippet
 
 jobs:
   build:

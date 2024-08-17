@@ -1,7 +1,7 @@
 import { App, normalizePath, PluginSettingTab, Setting } from "obsidian";
-import UnofficialTailwindPlugin from "./main";
+import TailwindSnippetPlugin from "./main";
 
-export interface UnofficialTailwindPluginSettings {
+export interface TailwindSnippetPluginSettings {
   enablePreflight: boolean;
   addPrefixSelector: boolean;
   prefixSelector: string;
@@ -10,7 +10,7 @@ export interface UnofficialTailwindPluginSettings {
   contentConfig: string[];
 }
 
-export const DEFAULT_SETTINGS: UnofficialTailwindPluginSettings = {
+export const DEFAULT_SETTINGS: TailwindSnippetPluginSettings = {
   enablePreflight: false,
   addPrefixSelector: false,
   prefixSelector: ".tailwind",
@@ -20,9 +20,9 @@ export const DEFAULT_SETTINGS: UnofficialTailwindPluginSettings = {
 };
 
 export class SettingsTab extends PluginSettingTab {
-  plugin: UnofficialTailwindPlugin;
+  plugin: TailwindSnippetPlugin;
 
-  constructor(app: App, plugin: UnofficialTailwindPlugin) {
+  constructor(app: App, plugin: TailwindSnippetPlugin) {
     super(app, plugin);
     this.plugin = plugin;
   }

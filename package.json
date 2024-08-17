@@ -1,5 +1,5 @@
 {
-  "name": "unofficial-tailwindcss-obsidian-plugin",
+  "name": "tailwind-snippet-obsidian-plugin",
   "version": "0.5.1",
   "description": "Use TailwindCSS utility classes in your Obsidian vault's markup.",
   "main": "main.js",
@@ -18,7 +18,7 @@
   "author": "Nicholas Wilcox <nwilcox@linicks.dev>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nicholas-wilcox/unofficial-tailwindcss-obsidian-plugin.git"
+    "url": "https://github.com/nicholas-wilcox/tailwind-snippet-obsidian-plugin.git"
   },
   "license": "MIT",
   "devDependencies": {

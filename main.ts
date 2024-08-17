@@ -12,7 +12,7 @@ import tailwindcss, { Config as TailwindConfig } from "tailwindcss";
 import { version as tailwindVersion } from "tailwindcss/package.json";
 import plugin from "tailwindcss/plugin";
 import {
-  UnofficialTailwindPluginSettings,
+  TailwindSnippetPluginSettings,
   DEFAULT_SETTINGS,
   SettingsTab,
 } from "./settings";
@@ -20,8 +20,8 @@ import { id as pluginId } from "./manifest.json";
 import { paintRollerSvg } from "paint-roller";
 import { INFO, DEBUG, ERROR } from "log";
 
-export default class UnofficialTailwindPlugin extends Plugin {
-  settings: UnofficialTailwindPluginSettings;
+export default class TailwindSnippetPlugin extends Plugin {
+  settings: TailwindSnippetPluginSettings;
   preflightPlugin: NonNullable<TailwindConfig["plugins"]>[number];
 
   get vault() {

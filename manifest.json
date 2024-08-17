@@ -1,10 +1,10 @@
 {
-	"id": "unofficial-tailwindcss-plugin",
-	"name": "Unofficial TailwindCSS Plugin",
-	"version": "0.5.1",
-	"minAppVersion": "0.15.0",
-	"description": "Use TailwindCSS utility classes in your markup.",
-	"author": "Nicholas Wilcox",
-	"authorUrl": "https://github.com/nicholas-wilcox",
-	"isDesktopOnly": true
+  "id": "tailwind-snippet-plugin",
+  "name": "TailwindCSS Snippet",
+  "version": "0.5.1",
+  "minAppVersion": "0.15.0",
+  "description": "Use TailwindCSS utility classes in your markup.",
+  "author": "Nicholas Wilcox",
+  "authorUrl": "https://github.com/nicholas-wilcox",
+  "isDesktopOnly": true
 }

@@ -1,7 +1,7 @@
-# Unofficial TailwindCSS Obsidian Plugin
+# Tailwind Snippet Obsidian Plugin
 
-This plugin uses [TailwindCSS](https://tailwindcss.com/) (via
-[PostCSS](https://postcss.org/)) to produce a CSS snippet in your Obsidian
+This plugin uses [TailwindCSS](https://tailwindcss.com/) as a
+[PostCSS](https://postcss.org/) plugin to generate a CSS snippet in your Obsidian
 vault.
 
 ## How it works
@@ -23,25 +23,12 @@ Tailwind classes.
 If you aren't seeing changes that you expect, you may need to manually restart
 the plugin.
 
-## Installation
-
-At the time of writing, this plugin has not yet been submitted as a community
-plugin. Therefore, you must manually install this plugin, as you might do so for
-the [`hot-reload` plugin](https://github.com/pjeby/hot-reload).
-
-In the Releases section for this repository, you can find the zip archive that
-contains all of the individual files. Unzip that archive so that its contents
-are in a new directory called `unofficial-tailwindcss-plugin/`. Then you should
-be good to go after restarting Obsidian and enabling the plugin.
-
-Don't forget to enable the generated CSS snippet after it appears.
-
 ## Settings
 
 ### Preflight
 
 [Preflight](https://tailwindcss.com/docs/preflight) is a set of base styles that
-Tailwind injects into its `@tailwind base` directive. In a more literal sense,
+Tailwind injects into its `@tailwind base` directive. More literally,
 [`preflight`](https://github.com/tailwindlabs/tailwindcss/blob/master/src/corePlugins.js#L494)
 is one of Tailwind's core plugins, and it parses a static stylesheet named
 [`preflight.css`](https://github.com/tailwindlabs/tailwindcss/blob/master/src/css/preflight.css),
@@ -55,7 +42,7 @@ styles conflict with Obsidian's base styles such that:
 1. the Obsidian UI is affected by Preflight styles, and
 2. some Preflight styles are overshadowed by Obsidian styles.
 
-Therefore, this plugin (the Unofficial TailwindCSS Obsidian Plugin) does not
+Therefore, this plugin (the `tailwind-snippet` plugin) does not
 apply Preflight styles by default. You can enable Preflight in the plugin
 settings, which will direct the plugin to source a packaged copy of
 `preflight.css` using the Obsidian API.

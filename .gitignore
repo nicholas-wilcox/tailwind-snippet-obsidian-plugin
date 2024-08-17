@@ -35,7 +35,7 @@ Test\ Vault/.obsidian/graph.json
 Test\ Vault/.obsidian/workspace.json
 
 # Exclude files that are copied into or generated in test vault
-Test\ Vault/.obsidian/plugins/unofficial-tailwindcss-plugin
+Test\ Vault/.obsidian/plugins/tailwind-snippet
 Test\ Vault/.obsidian/snippets/tailwind.css
 
 # Exclude other plugin
