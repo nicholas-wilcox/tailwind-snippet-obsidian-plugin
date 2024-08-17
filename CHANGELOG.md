@@ -16,6 +16,8 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [0.6.1] - 2024-08-16
+
 ### Fixed
 
 - Added `styles.css` to GitHub release.
@@ -135,7 +137,8 @@ and this project adheres to
   and PostCSS to generate a CSS snippet from a vault's Markdown files.
 - Users can opt to enable TailwindCSS's Preflight styles.
 
-[unreleased]: https://github.com/nicholas-wilcox/tailwind-snippet-obsidian-plugin/compare/0.6.0...HEAD
+[unreleased]: https://github.com/nicholas-wilcox/tailwind-snippet-obsidian-plugin/compare/0.6.1...HEAD
+[0.6.1]: https://github.com/nicholas-wilcox/tailwind-snippet-obsidian-plugin/compare/0.6.0...0.6.1
 [0.6.0]: https://github.com/nicholas-wilcox/tailwind-snippet-obsidian-plugin/compare/0.5.1...0.6.0
 [0.5.1]: https://github.com/nicholas-wilcox/tailwind-snippet-obsidian-plugin/compare/0.5.0...0.5.1
 [0.5.0]: https://github.com/nicholas-wilcox/tailwind-snippet-obsidian-plugin/compare/0.4.1...0.5.0
