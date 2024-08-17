@@ -19,7 +19,7 @@ export const DEFAULT_SETTINGS: TailwindSnippetPluginSettings = {
   contentConfig: [],
 };
 
-export class SettingsTab extends PluginSettingTab {
+export class SettingTab extends PluginSettingTab {
   plugin: TailwindSnippetPlugin;
 
   constructor(app: App, plugin: TailwindSnippetPlugin) {

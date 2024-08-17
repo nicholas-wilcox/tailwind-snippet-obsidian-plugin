@@ -14,7 +14,7 @@ import plugin from "tailwindcss/plugin";
 import {
   TailwindSnippetPluginSettings,
   DEFAULT_SETTINGS,
-  SettingsTab,
+  SettingTab,
 } from "./settings";
 import { id as pluginId } from "./manifest.json";
 import { paintRollerSvg } from "paint-roller";
@@ -43,7 +43,7 @@ export default class TailwindSnippetPlugin extends Plugin {
       await this.checkSnippetsDirectory();
       await this.doTailwind();
       this.registerEvent(this.vault.on("modify", () => this.doTailwind()));
-      this.addSettingTab(new SettingsTab(this.app, this));
+      this.addSettingTab(new SettingTab(this.app, this));
 
       addIcon("paint-roller", paintRollerSvg);
       this.addRibbonIcon(

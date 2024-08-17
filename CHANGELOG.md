@@ -20,6 +20,7 @@ and this project adheres to
 
 - Change project name to `tailwind-snippet-obsidian-plugin` and plugin id to `tailwind-snippet`.
 - Change class names to `TailwindSnippet`.
+- Change `SettingsTab` to `SettingTab`.
 
 ## [0.5.1] - 2024-08-14
 
