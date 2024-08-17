@@ -4,6 +4,10 @@ This plugin uses [TailwindCSS](https://tailwindcss.com/) as a
 [PostCSS](https://postcss.org/) plugin to generate a CSS snippet in your Obsidian
 vault.
 
+## Disclaimer
+
+This repository and its author are not affiliated with TailwindCSS.
+
 ## How it works
 
 This plugin implements
