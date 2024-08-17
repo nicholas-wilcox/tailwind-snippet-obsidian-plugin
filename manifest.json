@@ -1,6 +1,6 @@
 {
-  "id": "tailwind-snippet-plugin",
-  "name": "TailwindCSS Snippet",
+  "id": "tailwind-snippet",
+  "name": "Tailwind Snippet",
   "version": "0.5.1",
   "minAppVersion": "0.15.0",
   "description": "Use TailwindCSS utility classes in your markup.",
