@@ -33,11 +33,12 @@ jobs:
       - name: Create release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FILES: "main.js manifest.json styles.css tailwind.css preflight.css"
         run: |
           cp ./node_modules/tailwindcss/lib/css/preflight.css .
           # Adapted from https://github.com/pjeby/hot-reload/blob/master/.github/workflows/publish.yml
           mkdir "${PLUGIN_NAME}"
-          cp main.js manifest.json tailwind.css preflight.css "${PLUGIN_NAME}/"
+          cp ${FILES} "${PLUGIN_NAME}/"
           zip -r "$PLUGIN_NAME".zip "$PLUGIN_NAME"
 
           tag="${GITHUB_REF#refs/tags/}"
@@ -45,4 +46,4 @@ jobs:
           gh release create "$tag" \
             --title="$tag" \
             --draft \
-            "${PLUGIN_NAME}".zip main.js manifest.json tailwind.css preflight.css
+            "${PLUGIN_NAME}".zip ${FILES}

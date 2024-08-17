@@ -16,6 +16,10 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Fixed
+
+- Added `styles.css` to GitHub release.
+
 ## [0.6.0] - 2024-08-16
 
 ### Changed
