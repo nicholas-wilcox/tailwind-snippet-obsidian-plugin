@@ -4,6 +4,7 @@ import {
   normalizePath,
   addIcon,
   Notice,
+  DataAdapter,
 } from "obsidian";
 import postcss, { AcceptedPlugin } from "postcss";
 import prefixer from "postcss-prefix-selector";
@@ -28,8 +29,8 @@ export default class TailwindSnippetPlugin extends Plugin {
     return this.app.vault;
   }
 
-  get adapter(): FileSystemAdapter {
-    return this.app.vault.adapter as FileSystemAdapter;
+  get adapter(): DataAdapter {
+    return this.app.vault.adapter;
   }
 
   get tailwindPlugins() {
@@ -101,16 +102,21 @@ export default class TailwindSnippetPlugin extends Plugin {
   }
 
   getTailwindContent(): string[] {
-    return [
-      ...this.vault
-        .getMarkdownFiles()
-        .map((f) => this.adapter.getFullPath(f.path)),
-      ...this.settings.contentConfig.map((glob) =>
-        this.adapter.getFullPath(
-          normalizePath(this.vault.configDir + "/" + glob),
+    const adapter = this.adapter;
+    if (adapter instanceof FileSystemAdapter) {
+      return [
+        ...this.vault
+          .getMarkdownFiles()
+          .map((f) => adapter.getFullPath(f.path)),
+        ...this.settings.contentConfig.map((glob) =>
+          adapter.getFullPath(normalizePath(this.vault.configDir + "/" + glob)),
         ),
-      ),
-    ];
+      ];
+    } else {
+      throw Error(
+        "Adapter is not a FileSystemAdapter. Cannot continue scanning your vault for Tailwind content.",
+      );
+    }
   }
 
   async getTailwindConfig(content: string[]): Promise<TailwindConfig> {

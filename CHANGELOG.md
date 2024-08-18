@@ -20,6 +20,10 @@ and this project adheres to
 
 - Non-affiliation disclaimer in `README.md`.
 
+### Changed
+
+- Check for `instanceof` `FileSystemAdapter` instead of type casting.
+
 ## [0.6.1] - 2024-08-16
 
 ### Fixed
