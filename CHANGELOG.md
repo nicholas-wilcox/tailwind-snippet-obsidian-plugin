@@ -16,6 +16,10 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Changed
+
+- Refactor plugin `id` import to `this.manifest.id` reference.
+
 ## [0.6.2] - 2024-08-18
 
 ### Added

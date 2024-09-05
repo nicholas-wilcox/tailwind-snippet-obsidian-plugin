@@ -17,7 +17,6 @@ import {
   DEFAULT_SETTINGS,
   SettingTab,
 } from "./settings";
-import { id as pluginId } from "./manifest.json";
 import { paintRollerSvg } from "paint-roller";
 import { INFO, DEBUG, ERROR } from "log";
 
@@ -83,7 +82,7 @@ export default class TailwindSnippetPlugin extends Plugin {
 
   async initPreflightPlugin() {
     const preflight = normalizePath(
-      this.vault.configDir + `/plugins/${pluginId}/preflight.css`,
+      this.vault.configDir + `/plugins/${this.manifest.id}/preflight.css`,
     );
     const preflightStyles = postcss.parse(await this.adapter.read(preflight));
 
@@ -158,7 +157,7 @@ export default class TailwindSnippetPlugin extends Plugin {
     try {
       const entryPoint = Boolean(this.settings.entryPoint)
         ? "/" + this.settings.entryPoint
-        : `/plugins/${pluginId}/tailwind.css`;
+        : `/plugins/${this.manifest.id}/tailwind.css`;
       const cssIn = normalizePath(this.vault.configDir + entryPoint);
       const cssOut = normalizePath(
         this.vault.configDir + "/snippets/tailwind.css",
