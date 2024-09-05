@@ -17,8 +17,8 @@ import {
   DEFAULT_SETTINGS,
   SettingTab,
 } from "./settings";
-import { paintRollerSvg } from "paint-roller";
-import { INFO, DEBUG, ERROR } from "log";
+import { paintRollerSvg } from "src/paint-roller";
+import { INFO, DEBUG, ERROR } from "src/log";
 
 export default class TailwindSnippetPlugin extends Plugin {
   settings: TailwindSnippetPluginSettings;
