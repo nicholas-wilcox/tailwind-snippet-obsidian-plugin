@@ -16,6 +16,8 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [0.6.3] - 2024-09-05
+
 ### Changed
 
 - Refactor plugin `id` import to `this.manifest.id` reference.
@@ -157,7 +159,8 @@ and this project adheres to
   and PostCSS to generate a CSS snippet from a vault's Markdown files.
 - Users can opt to enable TailwindCSS's Preflight styles.
 
-[unreleased]: https://github.com/nicholas-wilcox/tailwind-snippet-obsidian-plugin/compare/0.6.2...HEAD
+[unreleased]: https://github.com/nicholas-wilcox/tailwind-snippet-obsidian-plugin/compare/0.6.3...HEAD
+[0.6.3]: https://github.com/nicholas-wilcox/tailwind-snippet-obsidian-plugin/compare/0.6.2...0.6.3
 [0.6.2]: https://github.com/nicholas-wilcox/tailwind-snippet-obsidian-plugin/compare/0.6.1...0.6.2
 [0.6.1]: https://github.com/nicholas-wilcox/tailwind-snippet-obsidian-plugin/compare/0.6.0...0.6.1
 [0.6.0]: https://github.com/nicholas-wilcox/tailwind-snippet-obsidian-plugin/compare/0.5.1...0.6.0

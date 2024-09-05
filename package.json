@@ -1,6 +1,6 @@
 {
   "name": "tailwind-snippet-obsidian-plugin",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "Use TailwindCSS utility classes in your Obsidian vault's markup.",
   "main": "main.js",
   "scripts": {
