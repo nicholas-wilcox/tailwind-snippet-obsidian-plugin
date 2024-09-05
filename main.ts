@@ -81,9 +81,7 @@ export default class TailwindSnippetPlugin extends Plugin {
   }
 
   async initPreflightPlugin() {
-    const preflight = normalizePath(
-      this.vault.configDir + `/plugins/${this.manifest.id}/preflight.css`,
-    );
+    const preflight = normalizePath(`${this.manifest.dir}/preflight.css`);
     const preflightStyles = postcss.parse(await this.adapter.read(preflight));
 
     // This is an altered version of the original preflight plugin.

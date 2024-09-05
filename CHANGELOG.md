@@ -20,6 +20,7 @@ and this project adheres to
 
 - Refactor plugin `id` import to `this.manifest.id` reference.
 - Move `log.ts` and `paint-roller.ts` to a new `src/` directory.
+- Use `this.manifest.dir`.
 
 ## [0.6.2] - 2024-08-18
 
