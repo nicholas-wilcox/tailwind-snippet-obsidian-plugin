@@ -22,6 +22,10 @@ and this project adheres to
 - Move `log.ts` and `paint-roller.ts` to a new `src/` directory.
 - Use `this.manifest.dir`.
 
+### Fixed
+
+- Removed old plugin id values from the test vault's plugins list.
+
 ## [0.6.2] - 2024-08-18
 
 ### Added

@@ -1,6 +1,5 @@
 [
   "hot-reload",
-  "tailwindcss-snippet",
   "dataview",
-  "tailwind-snippet-plugin"
+  "tailwind-snippet"
 ]
