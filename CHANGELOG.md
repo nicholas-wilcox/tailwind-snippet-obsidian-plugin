@@ -16,6 +16,10 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Changed
+
+- Updated non-tailwind dependencies
+
 ## [0.6.3] - 2024-09-05
 
 ### Changed
