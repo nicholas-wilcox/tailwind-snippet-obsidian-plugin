@@ -16,6 +16,10 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+- Note on Tailwind versions
+
 ### Changed
 
 - Updated non-tailwind dependencies

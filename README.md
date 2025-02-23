@@ -6,7 +6,7 @@ vault.
 
 ## Disclaimer
 
-This repository and its author are not affiliated with TailwindCSS.
+This repository and its author are not affiliated with Tailwind.
 
 ## How it works
 
@@ -26,6 +26,17 @@ Tailwind classes.
 
 If you aren't seeing changes that you expect, you may need to manually restart
 the plugin.
+
+## Note on Tailwind versions
+
+**This plugin is made with Tailwind v3. There are no plans to update this plugin to work
+with the latest Tailwind version, v4.**
+
+Briefly put, Tailwind v4 has sufficiently refactored and optimized the PostCSS plugin method of using Tailwind,
+such that it is difficult if not impossible for me to reconcile Tailwind v4 with the Obsidian runtime environment (i.e., Electron).
+
+For those who are curious, you are welcome to clone this repository, upgrade to the latest Tailwind version,
+and observe the resulting `esbuild` errors.
 
 ## Settings
 
