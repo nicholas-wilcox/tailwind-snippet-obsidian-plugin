@@ -1,7 +1,7 @@
 {
 	"id": "tailwind-snippet",
 	"name": "Tailwind Snippet",
-	"version": "0.6.3",
+	"version": "0.6.4",
 	"minAppVersion": "0.15.0",
 	"description": "Use TailwindCSS utility classes in your markup.",
 	"author": "Nicholas Wilcox",
